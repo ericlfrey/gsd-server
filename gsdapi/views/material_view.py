@@ -3,7 +3,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from gsdapi.models import Material
+from gsdapi.models import Material, Project, Task
 
 
 class MaterialView(ViewSet):
@@ -30,6 +30,25 @@ class MaterialView(ViewSet):
         materials = Material.objects.get(pk=pk)
         serialized = MaterialSerializer(materials)
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+    def create(self, request):
+        """Handle POST requests for materials
+
+        Returns:
+            Response: JSON serialized representation of newly created material
+        """
+        new_material = Material()
+        new_material.project = Project.objects.get(id=request.data['project'])
+        new_material.task = Task.objects.get(id=request.data['task'])
+        new_material.name = request.data['name']
+        new_material.price = request.data['price']
+        new_material.quantity = request.data['quantity']
+        new_material.acquired = request.data['acquired']
+        new_material.save()
+
+        serialized = MaterialSerializer(new_material)
+
+        return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
 class MaterialSerializer(serializers.ModelSerializer):
