@@ -1,0 +1,38 @@
+[
+  {
+    "model": "gsdapi.material",
+    "pk": 1,
+    "fields": {
+      "project": 1,
+      "task": 1,
+      "name": "Drywall",
+      "price": 15.0,
+      "quantity": 1,
+      "acquired": false
+    }
+  },
+  {
+    "model": "gsdapi.material",
+    "pk": 2,
+    "fields": {
+      "project": 3,
+      "task": 3,
+      "name": "48 W Blinds",
+      "price": 40.0,
+      "quantity": 4,
+      "acquired": false
+    }
+  },
+  {
+    "model": "gsdapi.material",
+    "pk": 3,
+    "fields": {
+      "project": 3,
+      "task": 3,
+      "name": "80 W Blinds",
+      "price": 60.0,
+      "quantity": 1,
+      "acquired": false
+    }
+  }
+]
