@@ -31,6 +31,39 @@ class ProjectView(ViewSet):
         serialized = ProjectSerializer(projects)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
+    def create(self, request):
+        """Handle POST requests for projects
+
+        Returns:
+            Response: JSON serialized representation of newly created project
+        """
+        new_project = Project()
+        new_project.user = request.auth.user
+        new_project.title = request.data['title']
+        new_project.date_created = request.data['date_created']
+        new_project.save()
+
+        serialized = ProjectSerializer(new_project)
+
+        return Response(serialized.data, status=status.HTTP_201_CREATED)
+
+    # def update(self, request, pk=None):
+    #     """Handle PUT requests for tickets"""
+    #     ticket = Project.objects.get(pk=pk)
+    #     employee_id = request.data['employee']
+    #     date_completed = request.data['date_completed']
+    #     assigned_employee = Employee.objects.get(pk=employee_id)
+    #     ticket.employee = assigned_employee
+    #     ticket.date_completed = date_completed
+    #     ticket.save()
+    #     return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    # def destroy(self, request, pk=None):
+    #     """Handles Delete requests"""
+    #     ticket = ServiceTicket.objects.get(pk=pk)
+    #     ticket.delete()
+    #     return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     """JSON serializer for projects"""
@@ -42,4 +75,3 @@ class ProjectSerializer(serializers.ModelSerializer):
             'title',
             'date_created'
         )
-        depth = 1
