@@ -1,0 +1,29 @@
+[
+  {
+    "model": "gsdapi.project",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "date_created": "2023-02-20",
+      "title": "Hall Closets"
+    }
+  },
+  {
+    "model": "gsdapi.project",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "date_created": "2023-02-20",
+      "title": "Basement Stairs"
+    }
+  },
+  {
+    "model": "gsdapi.project",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "date_created": "2023-02-20",
+      "title": "Blinds / Curtains"
+    }
+  }
+]
