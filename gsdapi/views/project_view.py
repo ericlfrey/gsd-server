@@ -47,16 +47,13 @@ class ProjectView(ViewSet):
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
-    # def update(self, request, pk=None):
-    #     """Handle PUT requests for tickets"""
-    #     ticket = Project.objects.get(pk=pk)
-    #     employee_id = request.data['employee']
-    #     date_completed = request.data['date_completed']
-    #     assigned_employee = Employee.objects.get(pk=employee_id)
-    #     ticket.employee = assigned_employee
-    #     ticket.date_completed = date_completed
-    #     ticket.save()
-    #     return Response(None, status=status.HTTP_204_NO_CONTENT)
+    def update(self, request, pk=None):
+        """Handle PUT requests for projects"""
+        project = Project.objects.get(pk=pk)
+        title = request.data['title']
+        project.title = title
+        project.save()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     # def destroy(self, request, pk=None):
     #     """Handles Delete requests"""
