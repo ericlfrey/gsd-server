@@ -7,7 +7,7 @@
       "name": "Patch Holes",
       "details": "",
       "date_created": "2023-02-20",
-      "due_date": "",
+      "due_date": "2023-12-31",
       "status": 1
     }
   },
@@ -19,7 +19,7 @@
       "name": "Tape/Mud",
       "details": "Tape and mud drywall Seams and prepare to paint",
       "date_created": "2023-03-23",
-      "due_date": "",
+      "due_date": "2023-12-31",
       "status": 1
     }
   },
@@ -31,7 +31,7 @@
       "name": "Get the Blinds",
       "details": "Go to Lowes and get the blinds",
       "date_created": "2023-02-20",
-      "due_date": "",
+      "due_date": "2023-12-31",
       "status": 1
     }
   }
