@@ -50,6 +50,25 @@ class MaterialView(ViewSet):
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
+    def update(self, request, pk=None):
+        """Handle PUT requests for materials"""
+        material = Material.objects.get(pk=pk)
+
+        task = Task.objects.get(id=request.data['task'])
+        name = request.data['name']
+        price = request.data['price']
+        quantity = request.data['quantity']
+        acquired = request.data['acquired']
+
+        material.task = task
+        material.name = name
+        material.price = price
+        material.quantity = quantity
+        material.acquired = acquired
+
+        material.save()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class MaterialSerializer(serializers.ModelSerializer):
     """JSON serializer for materials"""
