@@ -69,6 +69,12 @@ class MaterialView(ViewSet):
         material.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
+    def destroy(self, request, pk=None):
+        """Handles Delete requests"""
+        material = Material.objects.get(pk=pk)
+        material.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class MaterialSerializer(serializers.ModelSerializer):
     """JSON serializer for materials"""
