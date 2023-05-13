@@ -50,6 +50,20 @@ class TaskView(ViewSet):
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
+    def update(self, request, pk=None):
+        """Handle PUT requests for tasks"""
+        task = Task.objects.get(pk=pk)
+        name = request.data['name']
+        details = request.data['details']
+        due_date = request.data['due_date']
+        task_status = request.data['status']
+        task.name = name
+        task.details = details
+        task.due_date = due_date
+        task.status = task_status
+        task.save()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class TaskSerializer(serializers.ModelSerializer):
     """JSON serializer for tasks"""
