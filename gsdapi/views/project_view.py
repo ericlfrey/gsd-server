@@ -55,11 +55,11 @@ class ProjectView(ViewSet):
         project.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
-    # def destroy(self, request, pk=None):
-    #     """Handles Delete requests"""
-    #     ticket = ServiceTicket.objects.get(pk=pk)
-    #     ticket.delete()
-    #     return Response(None, status=status.HTTP_204_NO_CONTENT)
+    def destroy(self, request, pk=None):
+        """Handles Delete requests"""
+        project = Project.objects.get(pk=pk)
+        project.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 
 class ProjectSerializer(serializers.ModelSerializer):

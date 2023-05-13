@@ -64,6 +64,12 @@ class TaskView(ViewSet):
         task.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
+    def destroy(self, request, pk=None):
+        """Handles Delete requests"""
+        task = Task.objects.get(pk=pk)
+        task.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class TaskSerializer(serializers.ModelSerializer):
     """JSON serializer for tasks"""
