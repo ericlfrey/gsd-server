@@ -3,7 +3,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from gsdapi.models import Task, Project
+from gsdapi.models import Task, Project, Material
 
 
 class TaskView(ViewSet):
@@ -27,8 +27,8 @@ class TaskView(ViewSet):
             Response -- JSON serialized tasks record
         """
 
-        tasks = Task.objects.get(pk=pk)
-        serialized = TaskSerializer(tasks)
+        task = Task.objects.get(pk=pk)
+        serialized = SingleTaskSerializer(task)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def create(self, request):
@@ -69,6 +69,36 @@ class TaskView(ViewSet):
         task = Task.objects.get(pk=pk)
         task.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+
+class MaterialsTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Material
+        fields = (
+            'id',
+            'name',
+            'price',
+            'quantity',
+            'acquired'
+        )
+
+
+class SingleTaskSerializer(serializers.ModelSerializer):
+    """JSON serializer for single task"""
+    materials = MaterialsTaskSerializer(many=True)
+
+    class Meta:
+        model = Task
+        fields = (
+            'id',
+            'project',
+            'name',
+            'details',
+            'date_created',
+            'due_date',
+            'status',
+            'materials'
+        )
 
 
 class TaskSerializer(serializers.ModelSerializer):
