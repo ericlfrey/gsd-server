@@ -1,16 +1,13 @@
 from django.db import models
-from .project import Project
-from .task import Task
 
 
 class Material(models.Model):
 
     project = models.ForeignKey(
-        Project,
-        on_delete=models.CASCADE
+        'Project', on_delete=models.CASCADE, related_name='materials'
     )
     task = models.ForeignKey(
-        Task,
+        'Task',
         on_delete=models.CASCADE,
         related_name='materials'
     )

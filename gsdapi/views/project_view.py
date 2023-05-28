@@ -70,5 +70,8 @@ class ProjectSerializer(serializers.ModelSerializer):
             'id',
             'user',
             'title',
-            'date_created'
+            'date_created',
+            'tasks',
+            'materials'
         )
+        depth = 2
