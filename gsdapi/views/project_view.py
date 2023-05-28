@@ -3,7 +3,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from gsdapi.models import Project
+from gsdapi.models import Project, Client
 
 
 class ProjectView(ViewSet):
@@ -37,15 +37,12 @@ class ProjectView(ViewSet):
         Returns:
             Response: JSON serialized representation of newly created project
         """
-        new_project = Project()
-        new_project.user = request.auth.user
-        new_project.title = request.data['title']
-        new_project.date_created = request.data['date_created']
-        new_project.save()
-
-        serialized = ProjectSerializer(new_project)
-
-        return Response(serialized.data, status=status.HTTP_201_CREATED)
+        user = Client.objects.get(
+            uid=request.META['HTTP_AUTHORIZATION'])
+        serializer = CreateProjectSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
         """Handle PUT requests for projects"""
@@ -60,6 +57,14 @@ class ProjectView(ViewSet):
         project = Project.objects.get(pk=pk)
         project.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+
+class CreateProjectSerializer(serializers.ModelSerializer):
+    """JSON serializer for creating new project"""
+
+    class Meta:
+        model = Project
+        fields = ['id', 'title', 'date_created']
 
 
 class ProjectSerializer(serializers.ModelSerializer):
