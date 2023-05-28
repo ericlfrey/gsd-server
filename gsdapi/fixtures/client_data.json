@@ -1,0 +1,11 @@
+[
+  {
+    "model": "gsdapi.client",
+    "pk": 1,
+    "fields": {
+      "uid": 1,
+      "first_name": "First",
+      "last_name": "Last"
+    }
+  }
+]
