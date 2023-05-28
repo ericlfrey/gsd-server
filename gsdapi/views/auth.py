@@ -20,8 +20,8 @@ def check_user(request):
         data = {
             'id': client.id,
             'uid': client.uid,
-            'first_name': client.bio,
-            'last_name': client.bio
+            'first_name': client.first_name,
+            'last_name': client.first_name
         }
         return Response(data)
     else:
