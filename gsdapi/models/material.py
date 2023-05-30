@@ -8,8 +8,10 @@ class Material(models.Model):
     )
     task = models.ForeignKey(
         'Task',
-        on_delete=models.CASCADE,
-        related_name='materials'
+        on_delete=models.SET_NULL,
+        related_name='materials',
+        blank=True,
+        null=True
     )
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=12, decimal_places=2)
