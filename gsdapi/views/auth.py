@@ -21,7 +21,7 @@ def check_user(request):
             'id': client.id,
             'uid': client.uid,
             'first_name': client.first_name,
-            'last_name': client.first_name
+            'last_name': client.last_name
         }
         return Response(data)
     else:
