@@ -15,8 +15,10 @@ class ProjectView(ViewSet):
         Returns:
             Response -- JSON serialized list of Projects
         """
-
+        uid = request.META['HTTP_AUTHORIZATION']
+        client = Client.objects.get(uid=uid)
         projects = Project.objects.all()
+        projects = projects.filter(user_id=client.id)
         serialized = ProjectSerializer(projects, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
