@@ -5,10 +5,10 @@
     "fields": {
       "project": 1,
       "name": "Patch Holes",
-      "details": "",
+      "details": "Cut drywall to fit holes",
       "date_created": "2023-02-20",
       "due_date": "2023-12-31",
-      "status": 1
+      "status": "Not Started"
     }
   },
   {
@@ -20,7 +20,7 @@
       "details": "Tape and mud drywall Seams and prepare to paint",
       "date_created": "2023-03-23",
       "due_date": "2023-12-31",
-      "status": 1
+      "status": "Not Started"
     }
   },
   {
@@ -32,7 +32,7 @@
       "details": "Go to Lowes and get the blinds",
       "date_created": "2023-02-20",
       "due_date": "2023-12-31",
-      "status": 1
+      "status": "Not Started"
     }
   }
 ]

@@ -38,8 +38,9 @@ class MaterialView(ViewSet):
             Response: JSON serialized representation of newly created material
         """
         new_material = Material()
+        if 'task' in request.data:
+            new_material.task = Task.objects.get(id=request.data['task'])
         new_material.project = Project.objects.get(id=request.data['project'])
-        new_material.task = Task.objects.get(id=request.data['task'])
         new_material.name = request.data['name']
         new_material.price = request.data['price']
         new_material.quantity = request.data['quantity']
@@ -54,13 +55,15 @@ class MaterialView(ViewSet):
         """Handle PUT requests for materials"""
         material = Material.objects.get(pk=pk)
 
-        task = Task.objects.get(id=request.data['task'])
+        if 'task' in request.data:
+            if request.data['task'] is not None:
+                task = Task.objects.get(id=request.data['task'])
+                material.task = task
         name = request.data['name']
         price = request.data['price']
         quantity = request.data['quantity']
         acquired = request.data['acquired']
 
-        material.task = task
         material.name = name
         material.price = price
         material.quantity = quantity

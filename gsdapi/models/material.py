@@ -1,18 +1,17 @@
 from django.db import models
-from .project import Project
-from .task import Task
 
 
 class Material(models.Model):
 
     project = models.ForeignKey(
-        Project,
-        on_delete=models.CASCADE
+        'Project', on_delete=models.CASCADE, related_name='materials'
     )
     task = models.ForeignKey(
-        Task,
-        on_delete=models.CASCADE,
-        related_name='materials'
+        'Task',
+        on_delete=models.SET_NULL,
+        related_name='materials',
+        blank=True,
+        null=True
     )
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=12, decimal_places=2)

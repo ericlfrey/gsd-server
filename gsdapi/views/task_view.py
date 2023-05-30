@@ -99,6 +99,7 @@ class SingleTaskSerializer(serializers.ModelSerializer):
             'status',
             'materials'
         )
+        depth = 1
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -112,6 +113,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'details',
             'date_created',
             'due_date',
-            'status'
+            'status',
+            'materials'
         )
         depth = 1
