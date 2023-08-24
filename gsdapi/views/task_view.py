@@ -46,7 +46,7 @@ class TaskView(ViewSet):
         new_task.status = request.data['status']
         new_task.save()
 
-        serialized = TaskSerializer(new_task)
+        serialized = CreateTaskSerializer(new_task)
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
@@ -117,3 +117,18 @@ class TaskSerializer(serializers.ModelSerializer):
             'materials'
         )
         depth = 1
+
+
+class CreateTaskSerializer(serializers.ModelSerializer):
+    """JSON serializer for tasks"""
+    class Meta:
+        model = Task
+        fields = (
+            'id',
+            'project',
+            'name',
+            'details',
+            'date_created',
+            'due_date',
+            'status'
+        )
