@@ -64,7 +64,8 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://gsd-client-dc876404c11f.herokuapp.com/'
+    'https://gsd-client-dc876404c11f.herokuapp.com/',
+    'gsd.ericlfrey.com'
 )
 
 MIDDLEWARE = [
