@@ -46,7 +46,7 @@ class TaskView(ViewSet):
         new_task.status = request.data['status']
         new_task.save()
 
-        serialized = CreateTaskSerializer(new_task)
+        serialized = TaskSerializer(new_task)
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
