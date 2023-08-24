@@ -12,10 +12,10 @@ python3 manage.py loaddata material_data
 
 # for Heroku:
 
-heroku run python3 manage.py migrate
+heroku run python3 manage.py migrate --app gsd-server
 
 
-heroku run python3 manage.py loaddata client_data --app gsd-api
-heroku run python3 manage.py loaddata project_data --app gsd-api
-heroku run python3 manage.py loaddata task_data --app gsd-api
-heroku run python3 manage.py loaddata material_data --app gsd-api
+heroku run python3 manage.py loaddata client_data --app gsd-server
+heroku run python3 manage.py loaddata project_data --app gsd-server
+heroku run python3 manage.py loaddata task_data --app gsd-server
+heroku run python3 manage.py loaddata material_data --app gsd-server
