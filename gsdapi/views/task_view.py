@@ -132,3 +132,4 @@ class CreateTaskSerializer(serializers.ModelSerializer):
             'due_date',
             'status'
         )
+        depth = 1
